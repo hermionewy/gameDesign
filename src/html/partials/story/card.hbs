@@ -1,0 +1,20 @@
+{{#each copy.connections}}
+    <div class="row card_model" id={{id}}>
+        <div class="col-md-6 verticalDiv">
+            <img class="card__image" src="assets/images/1-Paul-Reveres-house.jpg">
+        </div>
+        <div class="col-md-6 verticalDiv">
+            <div class="card__content">
+                <h2>{{title}}</h2>
+                {{#each text}}
+                    <p>{{{value}}}</p>
+                {{/each}}
+                {{#each btn}}
+                    <a class="btn--primary overline">
+                        <p class="btn__p" data-next ={{next}}>{{text}}</p>
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+{{/each}}

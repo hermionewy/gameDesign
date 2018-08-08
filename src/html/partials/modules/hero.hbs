@@ -1,0 +1,44 @@
+{{#if subpage}}
+<section class="hero hero--{{type}}">
+{{else}}
+<header class="hero hero--{{type}}">
+{{/if}}
+
+  <div class="hero__media">
+    <figure>
+      <picture>
+        <!--[if IE 9]><video style='display: none;'><![endif]-->
+          <source data-srcset="/assets/images/{{#if img}}{{img}}{{else}}article-1-1{{/if}}_1200.jpg" media="(min-width:853px)">
+          <source data-srcset="/assets/images/{{#if img}}{{img}}{{else}}article-1-1{{/if}}_900.jpg" media="(min-width:600px)">
+          <source data-srcset="/assets/images/{{#if img}}{{img}}{{else}}article-1-1{{/if}}_650.jpg" media="(min-width:1px)">
+          <!--[if IE 9]></video><![endif]-->
+          <img class="lazyload" src="/assets/images/{{#if img}}{{img}}{{else}}article-1-1{{/if}}_placeholder.jpg" data-srcset="/assets/images/article-1-1_placeholder.jpg" alt="">
+      </picture>
+    </figure>
+  </div>
+  <div class="hero__content">
+    <div class="hero__inner">
+
+      {{#if subpage}}
+        <a class="hero__title-link" href="#"><h2 data-article-hed>{{#if headline}}{{headline}}{{else}}Water terrifies me. Here’s how I took the plunge.{{/if}}</h2></a>
+      {{else}}
+        <h1 data-article-hed>{{#if headline}}{{headline}}{{else}}Water terrifies me. Here’s how I took the plunge.{{/if}}</h1>
+      {{/if}}
+      {{#if news-dek}}
+      <p class="hero__news-dek">I'm the hero</p>
+      {{else}}
+      <p class="hero__dek">When we read them, books take us away from our lives. Years later, they’re vehicles for telling our own stories.</p>
+      {{/if}}
+      {{#if byline}}
+      <address>
+        <p>By Joan Anderman</p>
+        <p>Photos by Gretchen Ertl</p>
+      </address>
+      {{/if}}
+    </div>
+  </div>
+{{#if subpage}}
+</section>
+{{else}}
+</header>
+{{/if}}
