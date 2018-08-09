@@ -39,6 +39,75 @@
 	<script src='{{basepath}}assets/scripts/d3.v5.0.0.min.js'></script> --}}
 	<script src='{{basepath}}assets/scripts/d3.v4.12.0+jetpack.min.js'></script>
 	<script src='bundle.js?version={{timestamp}}' async></script>
+    <script>
+
+        var $page1 = d3.select('#Gianni-1')
+        var $btn1 = d3.select(selectAllBtns($page1)[0])
+        init();
+
+        pageAction(1);
+        pageAction(2);
+        pageAction(3);
+        pageAction2(4);
+        pageAction2('4-1');
+        pageAction('4-2');
+        pageAction2('4-3');
+        pageAction2('4-1-1');
+        pageAction2('4-1-2');
+        pageAction('4-3-1');
+        pageAction2('4-3-2');
+        pageAction('4-4-1');
+        pageAction2('5');
+        pageAction('5-1');
+        pageAction('5-2');
+        pageAction('6');
+
+
+        function pageAction(pageNum) {
+            var $page = d3.select('#Gianni-'+pageNum)
+
+            var $btn1 = d3.select(selectAllBtns($page)[0])
+
+            $btn1.on('click', function () {
+                nextStep($btn1)
+            });
+        }
+
+        function pageAction2(pageNum) {
+            var $page = d3.select('#Gianni-'+pageNum)
+
+            var $btn1 = d3.select(selectAllBtns($page)[0])
+
+            $btn1.on('click', function () {
+                nextStep($btn1)
+            });
+            var $btn2 = d3.select(selectAllBtns($page)[1])
+
+            $btn2.on('click', function () {
+                nextStep($btn2)
+            });
+        }
+
+
+        function nextStep($btn) {
+            var nextId = $btn.attr('data-next')
+            console.log(nextId);
+            d3.selectAll('.card_model')
+                    .classed('hide', true)
+            d3.select('#'+nextId)
+                    .classed('hide', false)
+        }
+        function selectAllBtns($page) {
+            var btns = $page.selectAll('.btn--primary').nodes()
+            return btns
+        }
+        function init() {
+            d3.selectAll('.card_model')
+                    .classed('hide', true)
+            $page1.classed('hide', false)
+        }
+
+    </script>
 </body>
 
 </html>

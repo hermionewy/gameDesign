@@ -30,12 +30,13 @@ function setupStickyHeader() {
 }
 
 function init() {
+	console.log("where are graphics")
 	// add mobile class to body tag
 	$body.classed('is-mobile', isMobile.any());
 	// setup resize event
 	window.addEventListener('resize', debounce(resize, 150));
 	// setup sticky header menu
-	setupStickyHeader();
+	//setupStickyHeader();
 	// kick off graphic code
 	graphic.init();
 }
