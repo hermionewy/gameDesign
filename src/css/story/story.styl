@@ -45,8 +45,13 @@ a {
     text-align center
 
 .card__image
-    width 100%
-    height auto
+  width 100%
+  height auto
+  margin auto
+  @media screen and (max-width: 450px)
+    width auto
+    height 50vh
+
 
 .card__content a.btn--primary
   background-color #e05b43
@@ -72,13 +77,42 @@ a {
 .hide
   display none
 
-.show
-  display block
+.row
+  margin-left 0
+  margin-right 0
+
+.card_model.show
+  animation scale-display .4s
+
+.card_model.hide
+  animation scale-display--reversed .4s
+  animation-fill-mode forwards
 
 
-
-//@keyframes slide
-//{
-//  from {height: 100vh;}
-//  to {height: 0vh;}
-//}
+@keyframes scale-display {
+  0% {
+    opacity: 0;
+    transform: translateY(0)
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(1000)
+  }
+}
+@keyframes scale-display--reversed {
+  0% {
+    display: block;
+    opacity: 1;
+    transform: translateY(1000)
+  }
+  99% {
+    display: block;
+    opacity: 0;
+    transform: translateY(0)
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    transform: translateY(0)
+  }
+}

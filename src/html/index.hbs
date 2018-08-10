@@ -93,9 +93,13 @@
             var nextId = $btn.attr('data-next')
             console.log(nextId);
             d3.selectAll('.card_model')
+                    .classed('show', false)
+            d3.selectAll('.card_model')
                     .classed('hide', true)
             d3.select('#'+nextId)
                     .classed('hide', false)
+            d3.select('#'+nextId)
+                    .classed('show', true)
         }
         function selectAllBtns($page) {
             var btns = $page.selectAll('.btn--primary').nodes()
