@@ -1,11 +1,11 @@
 {{#each copy.connections}}
     <div class="row card_model" id={{id}}>
         <div class="col-md-6 verticalDiv">
-            <img class="card__image" src="assets/images/1-Paul-Reveres-house.jpg">
+            <img class="card__image" src={{img}}>
         </div>
         <div class="col-md-6 verticalDiv">
             <div class="card__content">
-                <h2>{{title}}</h2>
+                <h2 class="title__game">{{title}}</h2>
                 {{#each text}}
                     <p>{{{value}}}</p>
                 {{/each}}
