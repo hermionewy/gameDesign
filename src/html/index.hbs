@@ -6,6 +6,7 @@
 	{{> base/meta}}
 
 	<!-- smoosh -->
+    <link rel="stylesheet" href="assets/scripts/bootstrap.css"/>
 	<link rel='stylesheet' href='bundle.css' />
 	<!-- endsmoosh -->
 
@@ -30,6 +31,7 @@
 
 		<!-- PUT ALL YOUR HTML HERE-->
         <article class="article">
+            {{> story/opening}}
             {{> story/card}}
         </article>
 
@@ -41,8 +43,7 @@
 	<script src='bundle.js?version={{timestamp}}' async></script>
     <script>
 
-        var $page1 = d3.select('#Gianni-1')
-        var $btn1 = d3.select(selectAllBtns($page1)[0])
+        var currentPage;
         init();
 
         pageAction(1);
@@ -64,6 +65,7 @@
 
 
         function pageAction(pageNum) {
+            currentPage = pageNum;
             var $page = d3.select('#Gianni-'+pageNum)
 
             var $btn1 = d3.select(selectAllBtns($page)[0])
@@ -88,10 +90,28 @@
             });
         }
 
+        function goToPrevious(pageid) {
+            var currentID = 'Gianni-'+pageid
+            d3.selectAll('.card_model')
+                    .classed('show', false)
+            d3.selectAll('.card_model')
+                    .classed('hide', true)
+            d3.select('#'+currentID)
+                    .classed('hide', false)
+            d3.select('#'+currentID)
+                    .classed('show', true)
+            if(pageid!='all_opening'){
+                d3.select('#all-steppers')
+                        .classed('hide', false)
+            } else{
+                d3.select('#all-steppers')
+                        .classed('hide', true)
+            }
+            stepperJump(currentID)
+        }
 
         function nextStep($btn) {
             var nextId = $btn.attr('data-next')
-            console.log(nextId);
             d3.selectAll('.card_model')
                     .classed('show', false)
             d3.selectAll('.card_model')
@@ -100,6 +120,14 @@
                     .classed('hide', false)
             d3.select('#'+nextId)
                     .classed('show', true)
+            stepperJump(nextId)
+        }
+
+        function stepperJump(id) {
+            d3.selectAll('.stepper')
+                    .classed('stepper-active', false)
+            d3.select('#stepper-'+id)
+                    .classed('stepper-active', true)
         }
         function selectAllBtns($page) {
             var btns = $page.selectAll('.btn--primary').nodes()
@@ -108,8 +136,28 @@
         function init() {
             d3.selectAll('.card_model')
                     .classed('hide', true)
-            $page1.classed('hide', false)
+            d3.select('#all_opening')
+                    .classed('hide', false)
+            d3.select('#all-steppers')
+                    .classed('hide', true)
         }
+
+        // Change in hash
+        window.addEventListener('hashchange', e => {
+            if(window.location.hash=='#all_opening'){
+                console.log(window.location.hash)
+                init()
+                return
+            }
+            let hash = window.location.hash.replace('#Gianni-', '')
+            console.log(hash);
+            if(hash) {
+                goToPrevious(hash) }
+            else{
+                init()
+            }
+        })
+
 
     </script>
 </body>
