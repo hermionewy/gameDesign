@@ -107,7 +107,8 @@
                 d3.select('#all-steppers')
                         .classed('hide', true)
             }
-            stepperJump(currentID)
+            updateProcessor(currentID)
+            //stepperJump(currentID)
         }
 
         function nextStep($btn) {
@@ -120,37 +121,53 @@
                     .classed('hide', false)
             d3.select('#'+nextId)
                     .classed('show', true)
-            stepperJump(nextId)
+//            stepperJump(nextId)
+            updateProcessor(nextId)
         }
 
-        function stepperJump(id) {
-            d3.selectAll('.stepper')
-                    .classed('stepper-active', false)
-            d3.select('#stepper-'+id)
-                    .classed('stepper-active', true)
+//       function stepperJump(id) {
+//            d3.selectAll('.stepper')
+//                    .classed('stepper-active', false)
+//            d3.select('#stepper-'+id)
+//                    .classed('stepper-active', true)
+//        }
+
+        function updateProcessor(id) {
+            const allCards = d3.selectAll('.granni')
+            const nodes = allCards.nodes() //array of DOM
+            const widthRatio = 100/nodes.length;
+            nodes.forEach(function (d, i) {
+                const newId = d3.select(d).attr('id')
+                if(newId == id){
+                    d3.select('.line-processor')
+                            .style('width', widthRatio*(i+1)+'%')
+                }
+            })
         }
+
         function selectAllBtns($page) {
             var btns = $page.selectAll('.btn--primary').nodes()
             return btns
         }
         function init() {
+            window.location.hash='#all_opening'
             d3.selectAll('.card_model')
                     .classed('hide', true)
             d3.select('#all_opening')
                     .classed('hide', false)
-            d3.select('#all-steppers')
-                    .classed('hide', true)
+//            d3.select('#all-steppers')
+//                    .classed('hide', true)
+            d3.select('.line-processor')
+                    .style('width', 0)
         }
 
         // Change in hash
         window.addEventListener('hashchange', e => {
             if(window.location.hash=='#all_opening'){
-                console.log(window.location.hash)
                 init()
                 return
             }
             let hash = window.location.hash.replace('#Gianni-', '')
-            console.log(hash);
             if(hash) {
                 goToPrevious(hash) }
             else{

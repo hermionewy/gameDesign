@@ -1,5 +1,5 @@
 {{#each copy.connections}}
-    <div class="row card_model" id={{id}}>
+    <div class="row card_model granni hide" id={{id}}>
         <div class="col-md-6 verticalDiv">
             <img class="card__image" src={{img}}>
             <p class="img__credit">PERSON/CREDIT</p>
@@ -7,8 +7,8 @@
         </div>
         <div class="col-md-6 verticalDiv">
             <div class="card__content">
-                <a href="#" class="btn--primary overline" data-next ='Gianni-1' >
-                    <p class="btn__p">The immigration project</p>
+                <a href="#" class="btn--secondary overline " data-next ='Gianni-1' >
+                    <p class="btn__p">THE IMMIGRANT EXPERIENCE</p>
                 </a>
                 <h2 class="title__game">{{title}}</h2>
                 {{#each text}}
@@ -23,14 +23,11 @@
         </div>
     </div>
 {{/each}}
-<div class="row justify-content-center" id="all-steppers">
-    {{#each copy.connections}}
-        <a href="#{{id}}" class="stepper__a"><div class="stepper" id="stepper-{{id}}"></div></a>
-    {{/each}}
-    <!--<a href=""><div class="stepper" id="stepper-0"></div></a>-->
-    <!--<div class="stepper" id="stepper-1"></div>-->
-    <!--<div class="stepper" id="stepper-2"></div>-->
-    <!--<div class="stepper" id="stepper-3"></div>-->
-    <!--<div class="stepper" id="stepper-4"></div>-->
-    <!--<div class="stepper" id="stepper-5"></div>-->
-</div>
+
+<div class="line-processor-bg"></div>
+<div class="line-processor"></div>
+<!--<div class="row justify-content-center" id="all-steppers">-->
+    <!--{{#each copy.connections}}-->
+        <!--<a href="#{{id}}" class="stepper__a"><div class="stepper" id="stepper-{{id}}"></div></a>-->
+    <!--{{/each}}-->
+<!--</div>-->
